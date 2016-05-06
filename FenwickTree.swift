@@ -22,26 +22,20 @@ struct FenwickTree: CustomDebugStringConvertible {
             let delta = newValue - oldValue
             data[index] = newValue
             var x = index + 1
-            var dump = [Int]()
             while x <= count {
-                dump.append(x)
                 tree[x] += delta
                 x += x & -x
             }
-//            print("data[\(index)]=\(newValue) \(index+1):\(dump)")
         }
     }
     
     func sum(index: Int) -> Int {
-        var x = index + 1
         var sum = 0
-        var dump = [Int]()
+        var x = index + 1
         while x > 0 {
-            dump.append(x)
             sum += tree[x]
             x -= x & -x
         }
-        print("sum[0:\(index)]=\(sum) \(index+1):\(dump)")
         return sum
     }
     
